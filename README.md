@@ -133,14 +133,14 @@ Learner state is written atomically to the operating system's application-data d
 
 ### Installer
 
-**Latest stable build:** [Apex A+ Academy 1.2.0 (Windows x64 installer)](https://github.com/DigitalHallucinations/apex-a-plus-academy/releases/download/v1.2.0/Apex.A+.Academy_1.2.0_x64-setup.exe) · [all releases](https://github.com/DigitalHallucinations/apex-a-plus-academy/releases)
+**Latest stable build:** [Apex A+ Academy 1.2.1 (Windows x64 installer)](https://github.com/DigitalHallucinations/apex-a-plus-academy/releases/download/v1.2.1/Apex%20A%2B%20Academy_1.2.1_x64-setup.exe) · [all releases](https://github.com/DigitalHallucinations/apex-a-plus-academy/releases)
 
 Download the `.exe`, run it, and follow the prompts. Because the build is not yet code-signed, Windows SmartScreen may show an unrecognized-publisher warning — choose **More info → Run anyway**. To sign your own builds and remove that warning, see [docs/CODE-SIGNING.md](docs/CODE-SIGNING.md).
 
 A SHA-256 checksum is attached to each release as `SHA256SUMS.txt`. Verify your download in PowerShell:
 
 ```powershell
-Get-FileHash ".\Apex A+ Academy_1.2.0_x64-setup.exe" -Algorithm SHA256
+Get-FileHash ".\Apex A+ Academy_1.2.1_x64-setup.exe" -Algorithm SHA256
 ```
 
 ## Development

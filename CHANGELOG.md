@@ -2,7 +2,7 @@
 
 All notable changes to Apex A+ Academy are documented here.
 
-## Unreleased
+## 1.2.1 - 2026-06-14
 
 ### Added
 
