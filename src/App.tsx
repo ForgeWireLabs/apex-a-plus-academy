@@ -21,6 +21,7 @@ const nav: { id: View; label: string; icon: typeof Home }[] = [
   { id: "dashboard", label: "Command Center", icon: Home },
   { id: "learn", label: "Learning Paths", icon: BookOpen },
   { id: "practice", label: "Practice Lab", icon: Target },
+  { id: "pbq", label: "PBQ Lab", icon: Sparkles },
   { id: "mock", label: "Mock Exam", icon: ClipboardCheck },
   { id: "flashcards", label: "Recall Deck", icon: Layers3 },
   { id: "analytics", label: "Performance", icon: BarChart3 },
@@ -59,7 +60,7 @@ export default function App() {
   const [state, setState] = useState<LearnerState>(initialState);
   const [content, setContent] = useState<ContentBundle>(bundledContent);
   const [ready, setReady] = useState(false);
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(() => typeof window === "undefined" || window.innerWidth > 760);
   const [palette, setPalette] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
 
@@ -77,6 +78,8 @@ export default function App() {
   }, []);
 
   const update = (next: Partial<LearnerState>) => setState(s => ({ ...s, ...next }));
+  // Navigate, and on a phone-width screen dismiss the slide-over drawer after picking.
+  const selectView = (v: View) => { setView(v); if (typeof window !== "undefined" && window.innerWidth <= 760) setSidebar(false); };
   const attempts = state.attempts;
   const avg = attempts.length ? Math.round(attempts.reduce((a, x) => a + pct(x.score, x.total), 0) / attempts.length) : 0;
   const notifications = buildNotifications(state, content);
@@ -89,7 +92,7 @@ export default function App() {
     <aside className="sidebar">
       <div className="brand"><div className="brand-mark"><Zap /></div><div><b>APEX</b><span>A+ ACADEMY</span></div></div>
       <button className="collapse" aria-label={sidebar ? "Collapse sidebar" : "Expand sidebar"} onClick={() => setSidebar(!sidebar)}>{sidebar ? <ChevronLeft /> : <ChevronRight />}</button>
-      <nav>{nav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} onClick={() => setView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}</nav>
+      <nav>{nav.map(item => <button key={item.id} className={view === item.id ? "active" : ""} onClick={() => selectView(item.id)} title={item.label}><item.icon/><span>{item.label}</span></button>)}</nav>
       <div className="sidebar-card">
         <div className="mini-ring" style={{ "--value": `${avg}%` } as React.CSSProperties}><span>{avg}%</span></div>
         <div><b>Readiness</b><small>{attempts.length ? "Keep building" : "Take a baseline"}</small></div>
@@ -103,15 +106,16 @@ export default function App() {
         <button className="search" onClick={() => setPalette(true)} aria-label="Open search (Ctrl K)"><Search/><span>Search objectives, commands, ports...</span><kbd>Ctrl K</kbd></button>
         <div className="notif-wrap">
           <button className="icon-btn" aria-label={`Notifications (${notifications.length})`} aria-haspopup="true" aria-expanded={notifOpen} onClick={() => setNotifOpen(o => !o)}><Bell/>{notifications.length > 0 && <i className="badge">{notifications.length}</i>}</button>
-          {notifOpen && <><div className="notif-scrim" onClick={() => setNotifOpen(false)}/><div className="notif-pop" role="dialog" aria-label="Notifications"><h4>Notifications</h4>{notifications.length ? notifications.map(n => <button key={n.id} onClick={() => { setView(n.view); setNotifOpen(false); }}><Sparkles/><span>{n.text}</span><ChevronRight/></button>) : <p className="notif-empty">You're all caught up.</p>}</div></>}
+          {notifOpen && <><div className="notif-scrim" onClick={() => setNotifOpen(false)}/><div className="notif-pop" role="dialog" aria-label="Notifications"><h4>Notifications</h4>{notifications.length ? notifications.map(n => <button key={n.id} onClick={() => { selectView(n.view); setNotifOpen(false); }}><Sparkles/><span>{n.text}</span><ChevronRight/></button>) : <p className="notif-empty">You're all caught up.</p>}</div></>}
         </div>
-        <button className="profile" onClick={() => setView("settings")}><span>{state.name.slice(0,2).toUpperCase()}</span><div><b>{state.name}</b><small>Exam candidate</small></div></button>
+        <button className="profile" onClick={() => selectView("settings")}><span>{state.name.slice(0,2).toUpperCase()}</span><div><b>{state.name}</b><small>Exam candidate</small></div></button>
       </header>
 
       <section className="content" ref={contentRef} tabIndex={-1} aria-live="polite">
         {view === "dashboard" && <Dashboard state={state} setView={setView} />}
         {view === "learn" && <Learn state={state} setState={setState} setView={setView} />}
         {view === "practice" && <Practice state={state} setState={setState} />}
+        {view === "pbq" && <PbqLab />}
         {view === "mock" && <MockExam state={state} setState={setState} />}
         {view === "flashcards" && <Flashcards state={state} setState={setState} />}
         {view === "analytics" && <Analytics state={state} />}
@@ -119,7 +123,7 @@ export default function App() {
         {view === "settings" && <Preferences state={state} update={update} setState={setState} />}
       </section>
     </main>
-    {palette && <CommandPalette onClose={() => setPalette(false)} onPick={v => { setView(v); setPalette(false); }} />}
+    {palette && <CommandPalette onClose={() => setPalette(false)} onPick={v => { selectView(v); setPalette(false); }} />}
   </div></ContentProvider>;
 }
 

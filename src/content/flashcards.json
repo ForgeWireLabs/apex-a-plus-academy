@@ -24,5 +24,15 @@
   { "id": "f23", "domain": "security", "front": "MFA factors", "back": "Something you know, something you have, something you are (and sometimes location/behavior)." },
   { "id": "f24", "domain": "sw-troubleshooting", "front": "Ransomware first response", "back": "Isolate the system from the network, then follow incident response and restore from clean backups." },
   { "id": "f25", "domain": "operations", "front": "ESD protection", "back": "Use an anti-static wrist strap and mat; equalize potential before handling components." },
-  { "id": "f26", "domain": "operations", "front": "Change management essentials", "back": "Purpose, scope, risk, approval, schedule, testing, and a rollback plan." }
+  { "id": "f26", "domain": "operations", "front": "Change management essentials", "back": "Purpose, scope, risk, approval, schedule, testing, and a rollback plan." },
+  { "id": "f27", "domain": "mobile", "front": "Mobile hotspot vs tethering", "back": "A hotspot shares cellular data over Wi-Fi; tethering can share it over USB or Bluetooth." },
+  { "id": "f28", "domain": "networking", "front": "DNS troubleshooting clue", "back": "If an IP address works but the hostname does not, investigate DNS resolution first." },
+  { "id": "f29", "domain": "hardware", "front": "ATX vs EPS power", "back": "The 24-pin ATX connector powers the motherboard; the 4/8-pin EPS connector powers the CPU." },
+  { "id": "f30", "domain": "virtualization", "front": "Snapshot caution", "back": "A VM snapshot is a short-term rollback point, not a substitute for an independent backup." },
+  { "id": "f31", "domain": "hw-troubleshooting", "front": "New disk not visible", "back": "If firmware sees a new disk, initialize, partition, format, and assign a drive letter in Disk Management." },
+  { "id": "f32", "domain": "os", "front": "Linux navigation commands", "back": "pwd shows the current directory; cd changes directories; ls lists directory contents." },
+  { "id": "f33", "domain": "security", "front": "Least privilege", "back": "Grant only the access required for a role or task, and remove access when it is no longer needed." },
+  { "id": "f34", "domain": "sw-troubleshooting", "front": "Browser hijacker response", "back": "Remove suspicious extensions, reset browser settings if needed, and run an updated anti-malware scan." },
+  { "id": "f35", "domain": "operations", "front": "RTO vs RPO", "back": "RTO is how quickly service must return. RPO is how much data loss, measured in time, is acceptable." },
+  { "id": "f36", "domain": "operations", "front": "Secure media disposal", "back": "Use approved wiping, degaussing, shredding, or physical destruction based on the media and policy." }
 ]

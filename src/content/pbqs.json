@@ -102,5 +102,39 @@
     ],
     "answer": { "ipconfig": "ip", "sfc": "files", "chkdsk": "disk", "gpupdate": "policy" },
     "explanation": "ipconfig shows IP config, sfc repairs system files, chkdsk checks disks, and gpupdate refreshes Group Policy."
+  },
+  {
+    "id": "p07", "kind": "matching", "exam": "220-1201", "domain": "hardware", "difficulty": "Intermediate",
+    "prompt": "Match each component symptom to the most likely failing component.",
+    "objective": "Diagnose common hardware failures",
+    "items": [
+      { "id": "artifact", "text": "Colored artifacts under graphics load" },
+      { "id": "smart", "text": "S.M.A.R.T. warning and read errors" },
+      { "id": "beeps", "text": "Memory beep code during POST" },
+      { "id": "shutdown", "text": "Thermal shutdown near the processor" }
+    ],
+    "targets": [
+      { "id": "gpu", "label": "GPU" },
+      { "id": "drive", "label": "Storage drive" },
+      { "id": "ram", "label": "RAM" },
+      { "id": "cooling", "label": "CPU cooling system" }
+    ],
+    "answer": { "artifact": "gpu", "smart": "drive", "beeps": "ram", "shutdown": "cooling" },
+    "explanation": "Artifacts indicate graphics trouble, S.M.A.R.T. errors indicate storage failure, POST memory codes point to RAM, and CPU-area thermal shutdowns point to cooling."
+  },
+  {
+    "id": "p08", "kind": "ordering", "exam": "220-1202", "domain": "operations", "difficulty": "Intermediate",
+    "prompt": "Order a controlled production change from preparation through closure.",
+    "objective": "Apply change-management procedures",
+    "steps": [
+      { "id": "scope", "text": "Document scope, risk, and affected systems" },
+      { "id": "approve", "text": "Obtain required approval" },
+      { "id": "test", "text": "Test the change and rollback plan" },
+      { "id": "schedule", "text": "Schedule and communicate the maintenance window" },
+      { "id": "implement", "text": "Implement and validate the change" },
+      { "id": "close", "text": "Document results and close the change" }
+    ],
+    "answer": ["scope", "approve", "test", "schedule", "implement", "close"],
+    "explanation": "A controlled change is scoped, approved, tested, scheduled and communicated, implemented and validated, then documented and closed."
   }
 ]

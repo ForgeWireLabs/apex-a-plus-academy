@@ -1,5 +1,5 @@
 export type ExamCode = "220-1201" | "220-1202";
-export type View = "dashboard" | "learn" | "practice" | "mock" | "flashcards" | "analytics" | "notes" | "settings";
+export type View = "dashboard" | "learn" | "practice" | "pbq" | "mock" | "flashcards" | "analytics" | "notes" | "settings";
 export type Difficulty = "Foundation" | "Intermediate" | "Advanced";
 
 export interface Domain {
