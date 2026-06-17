@@ -127,7 +127,10 @@ Rules:
 
 Lessons, questions, flashcards, and PBQs may carry an optional `objectiveId` that
 references a registry entry in the same track. The validator rejects any
-`objectiveId` that does not resolve.
+`objectiveId` that does not resolve, **and requires the content item's `domain`
+to match the referenced objective's `domain`** — so content is always filed under
+the same domain CompTIA assigns the objective. When you tag an item to an
+objective, set its `domain` to that objective's domain too.
 
 ### Coverage
 

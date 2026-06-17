@@ -168,6 +168,7 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons,
   // ---- Objectives (optional registry) ----
   const objectiveIds = new Set();
   const objectiveToCert = new Map();
+  const objectiveToDomain = new Map();
   const seenO = new Set();
   for (const o of objectives) {
     if (seenO.has(o.id)) errors.push(`Duplicate objective id: ${o.id}`);
@@ -179,16 +180,18 @@ function validate(certifications, domains, questions, flashcards, pbqs, lessons,
     if (!o.title?.trim()) errors.push(`Objective ${o.id}: empty title`);
     objectiveIds.add(o.id);
     objectiveToCert.set(o.id, o.certId);
+    objectiveToDomain.set(o.id, o.domain);
   }
-  const checkObjRef = (label, certId, objectiveId) => {
+  const checkObjRef = (label, certId, domain, objectiveId) => {
     if (objectiveId === undefined) return;
-    if (!objectiveIds.has(objectiveId)) errors.push(`${label}: unknown objectiveId "${objectiveId}"`);
-    else if (objectiveToCert.get(objectiveId) !== certId) errors.push(`${label}: objectiveId "${objectiveId}" does not belong to cert "${certId}"`);
+    if (!objectiveIds.has(objectiveId)) { errors.push(`${label}: unknown objectiveId "${objectiveId}"`); return; }
+    if (objectiveToCert.get(objectiveId) !== certId) errors.push(`${label}: objectiveId "${objectiveId}" does not belong to cert "${certId}"`);
+    if (objectiveToDomain.get(objectiveId) !== domain) errors.push(`${label}: domain "${domain}" does not match objective "${objectiveId}" domain "${objectiveToDomain.get(objectiveId)}"`);
   };
-  for (const q of questions) checkObjRef(`Question ${q.id}`, q.certId, q.objectiveId);
-  for (const f of flashcards) checkObjRef(`Flashcard ${f.id}`, f.certId, f.objectiveId);
-  for (const p of pbqs) checkObjRef(`PBQ ${p.id}`, p.certId, p.objectiveId);
-  for (const l of lessons) checkObjRef(`Lesson ${l.id}`, l.certId, l.objectiveId);
+  for (const q of questions) checkObjRef(`Question ${q.id}`, q.certId, q.domain, q.objectiveId);
+  for (const f of flashcards) checkObjRef(`Flashcard ${f.id}`, f.certId, f.domain, f.objectiveId);
+  for (const p of pbqs) checkObjRef(`PBQ ${p.id}`, p.certId, p.domain, p.objectiveId);
+  for (const l of lessons) checkObjRef(`Lesson ${l.id}`, l.certId, l.domain, l.objectiveId);
 
   return errors;
 }

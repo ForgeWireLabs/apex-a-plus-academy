@@ -195,6 +195,7 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
   // ---- Objectives (optional registry) ---------------------------------------
   const objectiveIds = new Set<string>();
   const objectiveToCert = new Map<string, string>();
+  const objectiveToDomain = new Map<string, string>();
   const seenObj = new Set<string>();
   for (const o of objectiveList) {
     if (seenObj.has(o.id)) errors.push(`Duplicate objective id: ${o.id}`);
@@ -206,19 +207,22 @@ export function validateContent(content: Partial<ContentBundle> | null | undefin
     if (!o.title?.trim()) errors.push(`Objective ${o.id}: empty title`);
     objectiveIds.add(o.id);
     objectiveToCert.set(o.id, o.certId);
+    objectiveToDomain.set(o.id, o.domain);
   }
 
   // Any content item that references an objective must point at an existing one
-  // in the same certification.
-  const checkObjectiveRef = (label: string, certId: string, objectiveId?: string) => {
+  // in the same certification, and its own domain must match the objective's
+  // domain (content is filed under the same domain the objective lives in).
+  const checkObjectiveRef = (label: string, certId: string, domain: string, objectiveId?: string) => {
     if (objectiveId === undefined) return;
-    if (!objectiveIds.has(objectiveId)) errors.push(`${label}: unknown objectiveId "${objectiveId}"`);
-    else if (objectiveToCert.get(objectiveId) !== certId) errors.push(`${label}: objectiveId "${objectiveId}" does not belong to cert "${certId}"`);
+    if (!objectiveIds.has(objectiveId)) { errors.push(`${label}: unknown objectiveId "${objectiveId}"`); return; }
+    if (objectiveToCert.get(objectiveId) !== certId) errors.push(`${label}: objectiveId "${objectiveId}" does not belong to cert "${certId}"`);
+    if (objectiveToDomain.get(objectiveId) !== domain) errors.push(`${label}: domain "${domain}" does not match objective "${objectiveId}" domain "${objectiveToDomain.get(objectiveId)}"`);
   };
-  for (const q of questionList) checkObjectiveRef(`Question ${q.id}`, q.certId, q.objectiveId);
-  for (const f of flashcardList) checkObjectiveRef(`Flashcard ${f.id}`, f.certId, f.objectiveId);
-  for (const p of pbqList) checkObjectiveRef(`PBQ ${p.id}`, p.certId, p.objectiveId);
-  for (const l of lessonList) checkObjectiveRef(`Lesson ${l.id}`, l.certId, l.objectiveId);
+  for (const q of questionList) checkObjectiveRef(`Question ${q.id}`, q.certId, q.domain, q.objectiveId);
+  for (const f of flashcardList) checkObjectiveRef(`Flashcard ${f.id}`, f.certId, f.domain, f.objectiveId);
+  for (const p of pbqList) checkObjectiveRef(`PBQ ${p.id}`, p.certId, p.domain, p.objectiveId);
+  for (const l of lessonList) checkObjectiveRef(`Lesson ${l.id}`, l.certId, l.domain, l.objectiveId);
 
   return errors;
 }
