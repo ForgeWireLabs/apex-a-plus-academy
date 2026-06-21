@@ -21,6 +21,14 @@ live app**, not captured by hand, so they stay consistent every time.
 
 ## Regenerating
 
+One-time setup (downloads the Chromium build Playwright drives):
+
+```powershell
+npx playwright install chromium
+```
+
+Then:
+
 ```powershell
 npm run dev          # terminal 1 — dev server on http://localhost:1420
 npm run screenshots  # terminal 2 — writes the PNGs here (demo-state auto-generated if missing)
