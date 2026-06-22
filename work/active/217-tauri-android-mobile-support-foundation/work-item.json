@@ -1,0 +1,69 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "217",
+  "title": "Add Tauri Android mobile support foundation",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": [
+    "src-tauri",
+    "src",
+    "package.json",
+    "README.md",
+    "ROADMAP.md",
+    "docs"
+  ],
+  "depends_on": [],
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Initialize first-class Tauri Android support without introducing a PWA or alternate architecture.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "text": "Add documented Android development and build commands that follow the Tauri mobile CLI path.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "text": "Verify the Android app launches on an emulator or physical device and renders the SkillForge Academy shell.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "text": "Verify bundled certification content loads on Android for A+, Network+, and Security+ without network access.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "text": "Verify learner state persistence on Android for progress, notes, bookmarks, settings, and active track selection.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "text": "Make the core study flows usable on a phone-sized touch viewport: track switcher, dashboard, learning paths, practice, PBQ Lab, mock setup, flashcards, analytics, notes, and preferences.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "text": "Define and validate Android backup/export/import behavior under Android sandbox/storage rules, or explicitly record the platform blocker and mitigation.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-8",
+      "text": "Run the standard validation gates plus an Android build gate, documenting any host-machine dependency that prevents local execution.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "User request: direct Tauri mobile support, Android first"
+}

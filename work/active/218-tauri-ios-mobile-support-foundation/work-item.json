@@ -1,0 +1,75 @@
+{
+  "$schema": "../../../schemas/work-item.schema.json",
+  "id": "218",
+  "title": "Add Tauri iOS mobile support foundation",
+  "status": "active",
+  "owner_scope": "governance",
+  "affected_scopes": [
+    "src-tauri",
+    "src",
+    "package.json",
+    "README.md",
+    "ROADMAP.md",
+    "docs"
+  ],
+  "depends_on": ["217"],
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "text": "Initialize first-class Tauri iOS support after the Android foundation, without introducing a PWA or alternate architecture.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-2",
+      "text": "Add documented iOS development and build commands that follow the Tauri mobile CLI path.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-3",
+      "text": "Verify the iOS app launches in Simulator or on a physical device and renders the SkillForge Academy shell.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-4",
+      "text": "Verify bundled certification content loads on iOS for A+, Network+, and Security+ without network access.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-5",
+      "text": "Verify learner state persistence on iOS for progress, notes, bookmarks, settings, and active track selection.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-6",
+      "text": "Make the core study flows usable on iPhone-sized and iPad-sized touch viewports, building on the Android responsive work from 217.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-7",
+      "text": "Define and validate iOS backup/export/import behavior under iOS sandbox/document-picker rules, or explicitly record the platform blocker and mitigation.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-8",
+      "text": "Document Apple Developer, signing, provisioning, and App Store/TestFlight requirements separately from Windows code-signing item 212.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "AC-9",
+      "text": "Run the standard validation gates plus an iOS dev/build gate, documenting any macOS/Xcode/account dependency that prevents local execution.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "created": "2026-06-22",
+  "updated": "2026-06-22",
+  "source": "User request: direct Tauri mobile support, iOS after Android"
+}
