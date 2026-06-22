@@ -2,7 +2,9 @@
 
 All notable changes to SkillForge Academy are documented here. SkillForge Academy was previously developed under the working name Apex A+ Academy.
 
-## Unreleased
+## 1.4.0 - 2026-06-22
+
+Release status: local Windows release candidate built and validated. GitHub publication is pending resolution of an external billing issue.
 
 ### Added
 

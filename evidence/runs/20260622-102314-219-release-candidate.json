@@ -1,0 +1,65 @@
+{
+  "$schema": "../../schemas/evidence-run.schema.json",
+  "id": "20260622-102314-219-release-candidate",
+  "timestamp": "2026-06-22T10:23:14-05:00",
+  "work_item": "219",
+  "result": "passed-with-notes",
+  "commands": [
+    {
+      "command": "node scripts/validate-content.mjs --strict-coverage",
+      "exit_code": 0,
+      "summary": "All shipped tracks passed content validation and strict objective coverage: A+ 63/63, Network+ 25/25, Security+ 28/28."
+    },
+    {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "summary": "3 test files, 60 tests passed."
+    },
+    {
+      "command": "npm test -- src/backup.test.ts --run",
+      "exit_code": 0,
+      "summary": "Backup-specific test file passed: 4 tests."
+    },
+    {
+      "command": "npm run validate:a11y",
+      "exit_code": 0,
+      "summary": "Accessibility validation passed: 10 checks."
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "summary": "Frontend production build passed; Vite emitted the existing chunk-size warning."
+    },
+    {
+      "command": "cargo fmt --check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Rust formatting check passed."
+    },
+    {
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml",
+      "exit_code": 0,
+      "summary": "Rust/Tauri backend check passed."
+    },
+    {
+      "command": "npm run desktop:build",
+      "exit_code": 0,
+      "summary": "Built SkillForge Academy 1.4.0 executable and NSIS installer."
+    },
+    {
+      "command": "Silent installer smoke: Apex A+ Academy 1.2.1 followed by SkillForge Academy 1.4.0",
+      "exit_code": 0,
+      "summary": "Apex uninstall entry appeared after old install, disappeared after SkillForge 1.4.0 install, SkillForge reports version 1.4.0, app-data directory persisted."
+    }
+  ],
+  "artifacts": [
+    "src-tauri/target/release/bundle/nsis/SkillForge Academy_1.4.0_x64-setup.exe",
+    "src-tauri/target/release/bundle/nsis/SHA256SUMS.txt",
+    "docs/release-candidate-1.4.0.md",
+    "audits/AUDIT-2026-06-22-release-candidate-1.4.0.md"
+  ],
+  "environment": {
+    "platform": "win32",
+    "releasePublication": "GitHub publication pending external billing resolution",
+    "signing": "unsigned; work item 212 blocked"
+  }
+}

@@ -166,7 +166,9 @@ Learner state is written atomically to the operating system's application-data d
 
 ### Installer
 
-**Latest stable build:** [SkillForge Academy 1.3.2 (Windows x64 installer)](https://github.com/ForgeWireLabs/skillforge-academy/releases/download/v1.3.2/SkillForge.Academy_1.3.2_x64-setup.exe) · [all releases](https://github.com/ForgeWireLabs/skillforge-academy/releases)
+**Current release candidate:** SkillForge Academy `1.4.0` (Windows x64 installer), built locally at `src-tauri/target/release/bundle/nsis/SkillForge Academy_1.4.0_x64-setup.exe`.
+
+**Latest published GitHub release:** [SkillForge Academy 1.3.2](https://github.com/ForgeWireLabs/skillforge-academy/releases/tag/v1.3.2). Publishing `1.4.0` to GitHub is pending resolution of an external billing issue.
 
 > `1.3.0` is the first release under the SkillForge Academy name. Earlier installers were published as `Apex A+ Academy_*` (e.g. `Apex A+ Academy_1.2.1_x64-setup.exe`).
 
@@ -175,7 +177,7 @@ Download the `.exe`, run it, and follow the prompts. Because the build is not ye
 A SHA-256 checksum is attached to each release as `SHA256SUMS.txt`. Verify your download in PowerShell:
 
 ```powershell
-Get-FileHash ".\SkillForge.Academy_1.3.2_x64-setup.exe" -Algorithm SHA256
+Get-FileHash ".\SkillForge Academy_1.4.0_x64-setup.exe" -Algorithm SHA256
 ```
 
 ## Development
@@ -245,7 +247,7 @@ See [docs/certification-authoring.md](docs/certification-authoring.md) for the f
 
 ### Upgrading from Apex A+ Academy
 
-The rename to SkillForge Academy **does not move or reset existing learner data**. The application identifier (`com.apexlearning.aplusacademy`), the browser `localStorage` key (`apex-state`), and the encrypted backup format/extension (`.apexbackup`) are intentionally unchanged, so the renamed app reads the same local data directory and imports older backups without conversion. Because the Windows installer's product name changes, the new build installs alongside any existing "Apex A+ Academy" entry rather than replacing it — both share the same saved progress, and the old entry can be uninstalled safely.
+The rename to SkillForge Academy **does not move or reset existing learner data**. The application identifier (`com.apexlearning.aplusacademy`), the browser `localStorage` key (`apex-state`), and the encrypted backup format/extension (`.apexbackup`) are intentionally unchanged, so the renamed app reads the same local data directory and imports older backups without conversion. The Windows installer includes a pre-install hook that silently removes an existing "Apex A+ Academy" installation before installing SkillForge Academy; the shared app-data location is preserved.
 
 ## Project status
 

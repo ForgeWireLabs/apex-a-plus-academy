@@ -1,6 +1,6 @@
 # 219 - Release candidate, version, installer, and upgrade audit
 
-> **Status**: Active
+> **Status**: Completed 2026-06-22
 > **Owners**: Release/QA Specialist lead.
 > **Depends on**: 305.
 
@@ -40,6 +40,30 @@ Out of scope:
 
 ## Closeout
 
-Close when the release surface has one coherent version story, installer upgrade
-behavior is proven, and a release audit records artifacts, checksums, smoke
-results, signing status, and rollback guidance.
+The release surface now has one coherent version story:
+
+- `package.json`: `1.4.0`
+- `src-tauri/tauri.conf.json`: `1.4.0`
+- `VERSION`: `1.4.0`
+- Local installer: `SkillForge Academy_1.4.0_x64-setup.exe`
+- GitHub publication: pending external billing resolution
+
+Evidence:
+
+- `docs/release-candidate-1.4.0.md`
+- `audits/AUDIT-2026-06-22-release-candidate-1.4.0.md`
+- `evidence/runs/20260622-102314-219-release-candidate.json`
+- `src-tauri/target/release/bundle/nsis/SHA256SUMS.txt`
+
+Smoke results:
+
+- Installed app launched successfully.
+- Apex A+ Academy `1.2.1` silent install created a legacy uninstall entry.
+- SkillForge Academy `1.4.0` silent install removed the Apex uninstall entry,
+  installed SkillForge at `1.4.0`, and preserved the shared app-data directory.
+- Backup-specific tests passed.
+
+Notes:
+
+- Artifacts remain unsigned while 212 is blocked.
+- Interactive manual learner workflow smoke is deferred to 221 and 228.
